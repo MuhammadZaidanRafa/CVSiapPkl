@@ -5,528 +5,782 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV PKL - Muhammad Zaidan Rafa | Smart CV</title>
 
-    <!-- FONT MODERN -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- FONT AWESOME ICONS -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        * {
+        /* ===== RESET ===== */
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        /* ===== VARIABLES ===== */
+        :root {
+            --ink:        #0f0f1a;
+            --ink-soft:   #3d3d5c;
+            --ink-muted:  #8888aa;
+            --surface:    #ffffff;
+            --surface-2:  #f7f7fc;
+            --surface-3:  #eeeef8;
+            --border:     #e2e2f0;
+            --border-2:   #c8c8e8;
+            --violet:     #5b4cf5;
+            --violet-mid: #7c6ef7;
+            --violet-lt:  #ede9ff;
+            --violet-dk:  #3a2ec0;
+            --indigo:     #4338ca;
+            --rose:       #e11d48;
+            --teal:       #0d9488;
+            --amber:      #d97706;
+
+            --shadow-xs: 0 1px 3px rgba(15,15,26,.06);
+            --shadow-sm: 0 2px 10px rgba(91,76,245,.08);
+            --shadow-md: 0 8px 28px rgba(91,76,245,.13);
+            --shadow-lg: 0 20px 60px rgba(91,76,245,.16);
+
+            --r-sm: 10px;
+            --r-md: 16px;
+            --r-lg: 22px;
+            --r-xl: 32px;
+
+            --ease: cubic-bezier(.4,0,.2,1);
+            --t: .22s var(--ease);
+        }
+
+        /* ===== BASE ===== */
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+            background-color: #f0f0fa;
+            background-image:
+                radial-gradient(ellipse 70% 50% at 50% -5%,  rgba(91,76,245,.12) 0%, transparent 65%),
+                radial-gradient(ellipse 50% 40% at 95% 95%,  rgba(124,110,247,.09) 0%, transparent 55%),
+                radial-gradient(ellipse 40% 30% at 0%   70%,  rgba(67,56,202,.06) 0%, transparent 50%);
             min-height: 100vh;
-            padding: 20px;
+            color: var(--ink);
+            line-height: 1.6;
             overflow-x: hidden;
+            padding: clamp(14px, 4vw, 40px) clamp(10px, 3vw, 20px);
         }
 
-        .container {
-            max-width: 1000px;
+        /* ===== CONTAINER ===== */
+        .cv-wrap {
+            max-width: 880px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            background: var(--surface);
+            border-radius: var(--r-xl);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(91,76,245,.10);
             overflow: hidden;
-            position: relative;
-            animation: slideIn 0.8s ease-out;
+            animation: fadeUp .7s var(--ease) both;
         }
 
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(36px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+        /* ===== HEADER ===== */
+        .cv-header {
+            background: linear-gradient(150deg, var(--violet-dk) 0%, var(--violet) 55%, #9b87f5 100%);
+            padding: clamp(40px, 9vw, 72px) clamp(20px, 6vw, 52px) clamp(52px, 8vw, 72px);
             text-align: center;
-            padding: 40px 20px;
             position: relative;
             overflow: hidden;
+            color: #fff;
         }
 
-        .header::before {
+        /* decorative blobs */
+        .cv-header::before,
+        .cv-header::after {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-            transform: rotate(45deg);
-            animation: shine 3s infinite;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .cv-header::before {
+            width: 380px; height: 380px;
+            background: rgba(255,255,255,.05);
+            top: -120px; right: -80px;
+        }
+        .cv-header::after {
+            width: 220px; height: 220px;
+            background: rgba(255,255,255,.06);
+            bottom: 20px; left: -60px;
         }
 
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        /* wave bottom */
+        .header-wave {
+            position: absolute;
+            bottom: -1px; left: 0; right: 0;
+            height: 40px;
+            background: var(--surface);
+            clip-path: ellipse(55% 100% at 50% 100%);
         }
 
         .profile-img {
-            width: 140px;
-            height: 140px;
+            width:  clamp(96px, 18vw, 136px);
+            height: clamp(96px, 18vw, 136px);
             border-radius: 50%;
-            border: 5px solid rgba(255,255,255,0.3);
-            margin: 0 auto 20px;
             object-fit: cover;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 4px solid rgba(255,255,255,.3);
+            box-shadow: 0 10px 36px rgba(0,0,0,.28);
+            display: block;
+            margin: 0 auto 20px;
+            position: relative;
+            z-index: 1;
+            transition: transform var(--t), border-color var(--t);
+            background: var(--violet-mid);
         }
-
         .profile-img:hover {
             transform: scale(1.05);
-            border-color: rgba(255,255,255,0.6);
+            border-color: rgba(255,255,255,.6);
         }
 
-        .header h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 5px;
+        .cv-header h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(1.6rem, 5.5vw, 2.5rem);
+            font-weight: 400;
+            letter-spacing: -.01em;
+            margin-bottom: 10px;
             position: relative;
-            z-index: 2;
+            z-index: 1;
+            line-height: 1.2;
         }
 
-        .header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
+        .cv-header .subtitle {
+            font-size: clamp(.82rem, 2.8vw, .96rem);
+            opacity: .88;
+            font-weight: 400;
             position: relative;
-            z-index: 2;
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,.12);
+            border: 1px solid rgba(255,255,255,.18);
+            padding: 6px 18px;
+            border-radius: 50px;
+            backdrop-filter: blur(8px);
         }
 
-        .section {
-            padding: 35px 30px;
-            border-bottom: 1px solid #eee;
-            position: relative;
+        /* ===== SECTIONS ===== */
+        .cv-section {
+            padding: clamp(28px, 5.5vw, 44px) clamp(20px, 5.5vw, 44px);
+            border-bottom: 1px solid var(--border);
+            opacity: 0;
+            transform: translateY(18px);
+            animation: secIn .5s var(--ease) forwards;
+        }
+        .cv-section:last-child { border-bottom: none; }
+
+        .cv-section:nth-child(2)  { animation-delay: .12s; }
+        .cv-section:nth-child(3)  { animation-delay: .18s; }
+        .cv-section:nth-child(4)  { animation-delay: .23s; }
+        .cv-section:nth-child(5)  { animation-delay: .28s; }
+        .cv-section:nth-child(6)  { animation-delay: .33s; }
+        .cv-section:nth-child(7)  { animation-delay: .38s; }
+        .cv-section:nth-child(8)  { animation-delay: .43s; }
+
+        @keyframes secIn {
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .section:last-child {
-            border-bottom: none;
-        }
-
-        .section h2 {
-            font-size: 1.5rem;
-            color: #333;
-            margin-bottom: 20px;
+        .section-label {
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-weight: 600;
+            gap: 10px;
+            font-size: .68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            color: var(--violet);
+            margin-bottom: 20px;
+        }
+        .section-label i {
+            width: 30px; height: 30px;
+            background: var(--violet-lt);
+            color: var(--violet);
+            display: grid;
+            place-items: center;
+            border-radius: 8px;
+            font-size: .85rem;
+            flex-shrink: 0;
+        }
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--border), transparent);
         }
 
-        .section h2 i {
-            color: #667eea;
-            width: 25px;
-        }
-
+        /* ===== INFO GRID ===== */
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 10px;
+            margin-bottom: 14px;
         }
 
         .info-item {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 12px;
-            padding: 12px;
-            background: linear-gradient(135deg, #f8f9ff, #e8ecff);
-            border-radius: 12px;
-            transition: all 0.3s ease;
+            padding: 14px 16px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: var(--r-sm);
+            transition: transform var(--t), box-shadow var(--t), border-color var(--t);
         }
-
         .info-item:hover {
-            transform: translateX(8px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+            border-color: var(--violet-mid);
+            box-shadow: var(--shadow-sm);
         }
-
-        .info-item i {
-            color: #667eea;
-            font-size: 1.2rem;
-            width: 24px;
+        .info-item > i {
+            color: var(--violet);
+            font-size: .95rem;
+            margin-top: 2px;
+            flex-shrink: 0;
+            width: 18px;
         }
-
-        .profile-text {
-            line-height: 1.7;
-            color: #555;
-            text-align: justify;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-
-        .skill-item {
-            padding: 15px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            border-left: 4px solid #667eea;
-        }
-
-        .skill-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.2);
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .portfolio-item {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.4s ease;
-            position: relative;
-        }
-
-        .portfolio-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(102, 126, 234, 0.3);
-        }
-
-        .portfolio-link {
+        .info-item strong {
             display: block;
-            color: #333;
-            text-decoration: none;
-            padding: 25px;
+            font-size: .67rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .07em;
+            color: var(--ink-muted);
+            margin-bottom: 3px;
+        }
+        .info-item .val {
+            font-size: .88rem;
+            color: var(--ink);
+            font-weight: 500;
+            line-height: 1.4;
         }
 
-        .portfolio-title {
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #333;
+        /* contact row */
+        .contact-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 14px;
         }
 
-        .portfolio-link:hover .portfolio-title {
-            color: #667eea;
-        }
-
-        .btn-contact {
+        /* ===== BUTTONS ===== */
+        .btn {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-decoration: none;
+            gap: 8px;
+            padding: 9px 20px;
             border-radius: 50px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            margin: 5px;
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-contact:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.6);
-        }
-
-        .footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            font-size: 0.9rem;
-        }
-
-        /* DOWNLOAD BUTTON */
-        .download-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-            color: white;
-            border: none;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            font-size: 1.5rem;
+            font-size: .83rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all var(--t);
+            border: 1.5px solid var(--border-2);
+            background: var(--violet-lt);
+            color: var(--violet-dk);
             cursor: pointer;
-            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
-            transition: all 0.3s ease;
-            z-index: 1000;
+            font-family: inherit;
+        }
+        .btn:hover {
+            background: var(--violet);
+            color: #fff;
+            border-color: var(--violet);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ===== PROFILE BIO ===== */
+        .bio {
+            font-size: .93rem;
+            color: var(--ink-soft);
+            line-height: 1.85;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--violet);
+            border-radius: 0 var(--r-sm) var(--r-sm) 0;
+            padding: 16px 20px;
+        }
+
+        /* ===== CARD GRID (skills / edu / exp) ===== */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 12px;
+        }
+
+        .card {
+            padding: 16px 18px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--r-sm);
+            border-top: 3px solid var(--violet);
+            transition: transform var(--t), box-shadow var(--t), border-top-color var(--t);
+            position: relative;
+            overflow: hidden;
+        }
+        .card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--violet-lt);
+            opacity: 0;
+            transition: opacity var(--t);
+            pointer-events: none;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-top-color: #9b87f5;
+        }
+        .card:hover::after { opacity: .35; }
+
+        .card h3 {
+            font-size: .88rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 1;
+        }
+        .card p {
+            font-size: .78rem;
+            color: var(--ink-muted);
+            font-weight: 400;
+            line-height: 1.5;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* edu badge */
+        .edu-badge {
+            display: inline-block;
+            font-size: .65rem;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 50px;
+            background: var(--violet-lt);
+            color: var(--violet-dk);
+            margin-bottom: 6px;
+            letter-spacing: .04em;
+        }
+
+        /* ===== PORTFOLIO ===== */
+        .port-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 14px;
+        }
+
+        .port-card {
+            text-decoration: none;
+            display: block;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--r-md);
+            overflow: hidden;
+            position: relative;
+            transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+        }
+        .port-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--violet), #9b87f5);
+            opacity: 0;
+            transition: opacity var(--t);
+        }
+        .port-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--violet-mid);
+        }
+        .port-card:hover::before { opacity: 1; }
+
+        .port-thumb {
+            height: 80px;
+            background: linear-gradient(135deg, var(--violet-lt), #d4d0ff);
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 2.2rem;
         }
 
-        .download-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.6);
+        .port-body {
+            padding: 16px 18px;
+        }
+        .port-title {
+            font-size: .9rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+        .port-title i {
+            font-size: .72rem;
+            color: var(--violet-mid);
+            opacity: .6;
+            flex-shrink: 0;
+        }
+        .port-body p {
+            font-size: .8rem;
+            color: var(--ink-muted);
+            line-height: 1.5;
         }
 
-        /* RESPONSIVE DESIGN */
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
+        /* ===== PKL GOALS ===== */
+        .goal-list {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+        .goal-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: var(--r-sm);
+            font-size: .88rem;
+            color: var(--ink-soft);
+            font-weight: 500;
+            transition: border-color var(--t), transform var(--t);
+        }
+        .goal-item:hover {
+            border-color: var(--violet-mid);
+            transform: translateX(4px);
+        }
+        .goal-check {
+            width: 26px; height: 26px;
+            border-radius: 50%;
+            background: var(--violet-lt);
+            color: var(--violet);
+            display: grid;
+            place-items: center;
+            font-size: .75rem;
+            flex-shrink: 0;
+        }
+
+        /* ===== FOOTER ===== */
+        .cv-footer {
+            background: var(--surface-2);
+            border-top: 1px solid var(--border);
+            padding: 20px;
+            text-align: center;
+            font-size: .78rem;
+            color: var(--ink-muted);
+        }
+        .cv-footer i { color: var(--rose); }
+
+        /* ===== DOWNLOAD FAB ===== */
+        .fab-btn {
+            position: fixed;
+            bottom: clamp(18px, 5vw, 32px);
+            right:  clamp(18px, 5vw, 32px);
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--violet), #9b87f5);
+            color: #fff;
+            border: none;
+            font-size: 1.15rem;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            box-shadow: 0 6px 22px rgba(91,76,245,.45);
+            transition: transform var(--t), box-shadow var(--t);
+            z-index: 1000;
+        }
+        .fab-btn:hover {
+            transform: translateY(-3px) scale(1.07);
+            box-shadow: 0 12px 32px rgba(91,76,245,.55);
+        }
+        .fab-btn:active { transform: scale(.95); }
+
+        /* ===== RESPONSIVE: TABLET ===== */
+        @media (max-width: 720px) {
+            .cv-wrap { border-radius: var(--r-lg); }
+
+            .info-grid {
+                grid-template-columns: 1fr 1fr;
             }
 
-            .container {
-                margin: 10px;
-                border-radius: 20px;
+            .port-grid {
+                grid-template-columns: 1fr;
             }
+        }
 
-            .header {
-                padding: 30px 15px;
-            }
-
-            .header h1 {
-                font-size: 1.8rem;
-            }
-
-            .profile-img {
-                width: 110px;
-                height: 110px;
-            }
-
-            .section {
-                padding: 25px 20px;
-            }
-
-            .section h2 {
-                font-size: 1.3rem;
-            }
+        /* ===== RESPONSIVE: MOBILE ===== */
+        @media (max-width: 480px) {
+            body { padding: 8px 6px; }
+            .cv-wrap { border-radius: var(--r-md); }
 
             .info-grid {
                 grid-template-columns: 1fr;
-                gap: 15px;
             }
 
-            .portfolio-grid {
+            .card-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .cv-header { padding-bottom: clamp(44px, 10vw, 60px); }
+            .header-wave { height: 28px; }
+
+            .port-thumb { height: 60px; }
+
+            .contact-row { flex-direction: column; align-items: center; }
+
+            .btn { width: 100%; max-width: 280px; justify-content: center; }
+        }
+
+        /* ===== RESPONSIVE: VERY SMALL ===== */
+        @media (max-width: 360px) {
+            .card-grid {
                 grid-template-columns: 1fr;
             }
-
-            .download-btn {
-                bottom: 20px;
-                right: 20px;
-                width: 55px;
-                height: 55px;
-            }
         }
 
-        @media (max-width: 480px) {
-            .header h1 {
-                font-size: 1.5rem;
-            }
-
-            .profile-img {
-                width: 90px;
-                height: 90px;
-            }
-
-            .section {
-                padding: 20px 15px;
-            }
-        }
-
-        /* PRINT STYLES */
+        /* ===== PRINT ===== */
         @media print {
-            body {
-                background: white;
-            }
-            .container {
-                box-shadow: none;
+            body { background: #fff; padding: 0; }
+            .cv-wrap {
                 border-radius: 0;
+                box-shadow: none;
+                border: none;
+                animation: none;
             }
-            .download-btn {
-                display: none;
+            .fab-btn { display: none; }
+            .cv-section { animation: none; opacity: 1; transform: none; break-inside: avoid; }
+            .card:hover, .info-item:hover, .port-card:hover, .goal-item:hover {
+                transform: none; box-shadow: none;
             }
+            .cv-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <!-- HEADER -->
-    <div class="header">
-        <img src="Rafa SMP.jpeg" alt="Muhammad Zaidan Rafa" class="profile-img">
+<div class="cv-wrap">
+
+    <!-- ===== HEADER ===== -->
+    <div class="cv-header">
+        <img src="Rafa SMP.jpeg" alt="Foto Muhammad Zaidan Rafa" class="profile-img">
         <h1>Muhammad Zaidan Rafa</h1>
-        <p><i class="fas fa-graduation-cap"></i> Siswa SMK Negeri 1 Sanden | Jurusan RPL</p>
+        <p class="subtitle">
+            <i class="fas fa-graduation-cap"></i>
+            Siswa SMK Negeri 1 Sanden &nbsp;·&nbsp; Jurusan RPL
+        </p>
+        <div class="header-wave"></div>
     </div>
 
-    <!-- DATA DIRI -->
-    <div class="section">
-        <h2><i class="fas fa-user"></i> Data Diri</h2>
+    <!-- ===== DATA DIRI ===== -->
+    <div class="cv-section">
+        <div class="section-label">
+            <i class="fas fa-user"></i>
+            Data Diri
+        </div>
+
         <div class="info-grid">
             <div class="info-item">
                 <i class="fas fa-id-card"></i>
                 <div>
-                    <strong>Nama Lengkap:</strong><br>
-                    Muhammad Zaidan Rafa
+                    <strong>Nama Lengkap</strong>
+                    <span class="val">Muhammad Zaidan Rafa</span>
                 </div>
             </div>
             <div class="info-item">
                 <i class="fas fa-calendar-day"></i>
                 <div>
-                    <strong>TTL:</strong><br>
-                    Bantul, 17 Desember 2008
+                    <strong>Tempat, Tanggal Lahir</strong>
+                    <span class="val">Bantul, 17 Desember 2008</span>
                 </div>
             </div>
             <div class="info-item">
                 <i class="fas fa-map-marker-alt"></i>
                 <div>
-                    <strong>Alamat:</strong><br>
-                    Ngimbang, Pendowoharjo, Sewon, Bantul
+                    <strong>Alamat</strong>
+                    <span class="val">Ngimbang, Pendowoharjo, Sewon, Bantul</span>
                 </div>
             </div>
             <div class="info-item">
                 <i class="fas fa-phone"></i>
                 <div>
-                    <strong>No HP:</strong><br>
-                    <a href="tel:081326831712" class="btn-contact">
-                        <i class="fas fa-phone"></i> 081326831712
-                    </a>
+                    <strong>No. HP</strong>
+                    <span class="val">081326831712</span>
                 </div>
             </div>
         </div>
-        <div style="text-align: center;">
-            <a href="mailto:rafabagos75@gmail.com" class="btn-contact">
+
+        <div class="contact-row">
+            <a href="tel:081326831712" class="btn">
+                <i class="fas fa-phone"></i> 081326831712
+            </a>
+            <a href="mailto:rafabagos75@gmail.com" class="btn">
                 <i class="fas fa-envelope"></i> rafabagos75@gmail.com
             </a>
         </div>
     </div>
 
-    <!-- PROFIL -->
-    <div class="section">
-        <h2><i class="fas fa-user-tie"></i> Profil</h2>
-        <p class="profile-text">
-            Siswa SMK jurusan Rekayasa Perangkat Lunak yang <strong>berminat tinggi</strong> dalam bidang teknologi, 
-            khususnya pembuatan website dan pengolahan database. Memiliki <strong>semangat belajar tinggi</strong>, 
+    <!-- ===== PROFIL ===== -->
+    <div class="cv-section">
+        <div class="section-label">
+            <i class="fas fa-user-tie"></i>
+            Profil
+        </div>
+        <p class="bio">
+            Siswa SMK jurusan Rekayasa Perangkat Lunak yang <strong>berminat tinggi</strong> dalam bidang teknologi,
+            khususnya pembuatan website dan pengolahan database. Memiliki <strong>semangat belajar tinggi</strong>,
             disiplin, dan siap berkontribusi dalam kegiatan PKL untuk mengembangkan keterampilan di dunia industri.
         </p>
     </div>
 
-    <!-- PENDIDIKAN -->
-    <div class="section">
-        <h2><i class="fas fa-school"></i> Pendidikan</h2>
-        <div class="skills-grid">
-            <div class="skill-item">
-                <h3>SMK Negeri 1 Sanden (RPL)</h3>
-                <p>2024 - Sekarang</p>
+    <!-- ===== PENDIDIKAN ===== -->
+    <div class="cv-section">
+        <div class="section-label">
+            <i class="fas fa-school"></i>
+            Pendidikan
+        </div>
+        <div class="card-grid">
+            <div class="card">
+                <span class="edu-badge">2024 – Sekarang</span>
+                <h3>SMK Negeri 1 Sanden</h3>
+                <p>Jurusan Rekayasa Perangkat Lunak (RPL)</p>
             </div>
-            <div class="skill-item">
+            <div class="card">
+                <span class="edu-badge">2021 – 2024</span>
                 <h3>SMP Muhammadiyah Sewon</h3>
-                <p>2021 - 2024</p>
+                <p>Lulus dengan baik</p>
             </div>
         </div>
     </div>
 
-    <!-- KEMAMPUAN -->
-    <div class="section">
-        <h2><i class="fas fa-code"></i> Kemampuan</h2>
-        <div class="skills-grid">
-            <div class="skill-item">
-                <h3><i class="fab fa-html5"></i> HTML & CSS</h3>
-                <p>Dasar - Menengah</p>
+    <!-- ===== KEMAMPUAN ===== -->
+    <div class="cv-section">
+        <div class="section-label">
+            <i class="fas fa-code"></i>
+            Kemampuan
+        </div>
+        <div class="card-grid">
+            <div class="card">
+                <h3><i class="fab fa-html5"></i> HTML &amp; CSS</h3>
+                <p>Dasar – Menengah</p>
             </div>
-            <div class="skill-item">
+            <div class="card">
                 <h3><i class="fas fa-database"></i> SQL (MariaDB/MySQL)</h3>
                 <p>Dasar</p>
             </div>
-            <div class="skill-item">
+            <div class="card">
                 <h3><i class="fas fa-laptop-code"></i> Pemrograman Dasar</h3>
-                <p>Algoritma & Logika</p>
+                <p>Algoritma &amp; Logika</p>
             </div>
         </div>
     </div>
 
-    <!-- PENGALAMAN -->
-    <div class="section">
-        <h2><i class="fas fa-briefcase"></i> Pengalaman</h2>
-        <div class="skills-grid">
-            <div class="skill-item">
+    <!-- ===== PENGALAMAN ===== -->
+    <div class="cv-section">
+        <div class="section-label">
+            <i class="fas fa-briefcase"></i>
+            Pengalaman
+        </div>
+        <div class="card-grid">
+            <div class="card">
                 <h3>Database MariaDB</h3>
                 <p>Membuat database sederhana untuk sistem manajemen</p>
             </div>
-            <div class="skill-item">
+            <div class="card">
                 <h3>Website Sederhana</h3>
-                <p>Responsive web design dengan HTML & CSS</p>
+                <p>Responsive web design dengan HTML &amp; CSS</p>
             </div>
-            <div class="skill-item">
+            <div class="card">
                 <h3>Game Sederhana</h3>
                 <p>Game interaktif berbasis web</p>
             </div>
         </div>
     </div>
 
-    <!-- PORTOFOLIO -->
-    <div class="section">
-        <h2><i class="fas fa-folder-open"></i> Portofolio</h2>
-        <div class="portfolio-grid">
-            <a href="https://wonderful-pie-b39dba.netlify.app/" target="_blank" class="portfolio-item">
-                <div class="portfolio-link">
-                    <h3 class="portfolio-title">🎮 Game Dukun Edan</h3>
+    <!-- ===== PORTOFOLIO ===== -->
+    <div class="cv-section">
+        <div class="section-label">
+            <i class="fas fa-folder-open"></i>
+            Portofolio
+        </div>
+        <div class="port-grid">
+            <a href="https://wonderful-pie-b39dba.netlify.app/" target="_blank" class="port-card">
+                <div class="port-thumb">🎮</div>
+                <div class="port-body">
+                    <div class="port-title">
+                        Game Dukun Edan
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
                     <p>Game interaktif yang menyenangkan dan edukatif</p>
-                    <i class="fas fa-external-link-alt" style="float: right; margin-top: 10px;"></i>
                 </div>
             </a>
-            <a href="https://muhammadzaidanrafa.github.io/block/" target="_blank" class="portfolio-item">
-                <div class="portfolio-link">
-                    <h3 class="portfolio-title">🧩 Game Block Puzzle Touch</h3>
+            <a href="https://muhammadzaidanrafa.github.io/block/" target="_blank" class="port-card">
+                <div class="port-thumb">🧩</div>
+                <div class="port-body">
+                    <div class="port-title">
+                        Game Block Puzzle Touch
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
                     <p>Game puzzle yang challenging dan responsive</p>
-                    <i class="fas fa-external-link-alt" style="float: right; margin-top: 10px;"></i>
                 </div>
             </a>
         </div>
     </div>
 
-    <!-- TUJUAN PKL -->
-    <div class="section">
-        <h2><i class="fas fa-bullseye"></i> Tujuan PKL</h2>
-        <div class="profile-text">
-            <ul style="line-height: 2; color: #555;">
-                <li>✅ Mendapatkan pengalaman kerja nyata di industri IT</li>
-                <li>✅ Meningkatkan keterampilan teknis dan soft skills</li>
-                <li>✅ Belajar bekerja dalam tim profesional</li>
-                <li>✅ Mengembangkan portofolio proyek nyata</li>
-            </ul>
+    <!-- ===== TUJUAN PKL ===== -->
+    <div class="cv-section">
+        <div class="section-label">
+            <i class="fas fa-bullseye"></i>
+            Tujuan PKL
+        </div>
+        <div class="goal-list">
+            <div class="goal-item">
+                <span class="goal-check"><i class="fas fa-check"></i></span>
+                Mendapatkan pengalaman kerja nyata di industri IT
+            </div>
+            <div class="goal-item">
+                <span class="goal-check"><i class="fas fa-check"></i></span>
+                Meningkatkan keterampilan teknis dan soft skills
+            </div>
+            <div class="goal-item">
+                <span class="goal-check"><i class="fas fa-check"></i></span>
+                Belajar bekerja dalam tim profesional
+            </div>
+            <div class="goal-item">
+                <span class="goal-check"><i class="fas fa-check"></i></span>
+                Mengembangkan portofolio proyek nyata
+            </div>
         </div>
     </div>
 
-    <div class="footer">
-        <p><i class="fas fa-heart"></i> © 2025 Muhammad Zaidan Rafa | Siap PKL & Berkontribusi</p>
+    <!-- ===== FOOTER ===== -->
+    <div class="cv-footer">
+        <i class="fas fa-heart"></i>
+        &copy; 2025 Muhammad Zaidan Rafa &nbsp;|&nbsp; Siap PKL &amp; Berkontribusi
     </div>
+
 </div>
 
-<!-- DOWNLOAD BUTTON -->
-<button class="download-btn" onclick="window.print()" title="Download PDF / Print CV">
+<!-- ===== FAB DOWNLOAD ===== -->
+<button class="fab-btn" onclick="window.print()" title="Cetak / Simpan PDF">
     <i class="fas fa-download"></i>
 </button>
 
 <script>
-    // Smooth scroll dan animasi
-    window.addEventListener('scroll', () => {
-        const sections = document.querySelectorAll('.section');
-        sections.forEach(section => {
-            const rect = section.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-                section.style.opacity = '1';
-                section.style.transform = 'translateY(0)';
-            }
-        });
-    });
-
-    // PWA Ready - Add to Home Screen
+    // PWA Ready
     let deferredPrompt;
     window.addEventListener('beforeinstallprompt', (e) => {
         deferredPrompt = e;
